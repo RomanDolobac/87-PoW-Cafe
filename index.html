@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Drop-In Cafe — Menu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FAF7F0;
+    --bordeaux:#521524;
+    --bordeaux-deep:#380E19;
+    --rule:rgba(82,21,36,0.24);
+    --muted:rgba(56,14,25,0.6);
+    --onwine:rgba(250,247,240,0.72);
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+
+  body{
+    background:var(--paper);
+    color:var(--bordeaux-deep);
+    font-family:"IBM Plex Sans",-apple-system,system-ui,sans-serif;
+    font-weight:300;
+    -webkit-font-smoothing:antialiased;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:clamp(18px,3vh,40px) clamp(20px,3vw,52px);
+  }
+
+  .sheet{
+    width:100%;
+    max-width:1460px;
+    display:flex;
+    flex-direction:column;
+    gap:clamp(16px,2.6vh,30px);
+  }
+
+  /* ---------- masthead ---------- */
+  .masthead{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:24px;
+    padding-bottom:clamp(11px,1.8vh,20px);
+    border-bottom:1px solid var(--rule);
+  }
+  .wordmark{
+    font-family:"Fraunces",Georgia,serif;
+    font-weight:400;
+    font-size:clamp(28px,3.8vh,46px);
+    letter-spacing:-0.018em;
+    line-height:1;
+    color:var(--bordeaux);
+  }
+  .wordmark em{font-style:italic;font-weight:300}
+  .standfirst{
+    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:clamp(9px,1.15vh,11.5px);
+    letter-spacing:0.17em;
+    text-transform:uppercase;
+    color:var(--muted);
+    text-align:right;
+    line-height:2;
+  }
+
+  /* ---------- grid ---------- */
+  .columns{
+    display:grid;
+    grid-template-columns:1.02fr 1fr;
+    gap:clamp(20px,2.8vw,48px);
+    align-items:stretch;
+  }
+
+  /* ---------- signature: solid bordeaux, the loud thing ---------- */
+  .feature{
+    background:var(--bordeaux);
+    color:var(--paper);
+    padding:clamp(20px,3.2vh,38px) clamp(20px,2.2vw,36px) clamp(22px,3.4vh,40px);
+    display:flex;
+    flex-direction:column;
+  }
+  .feature .kicker{
+    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:clamp(9px,1.15vh,11.5px);
+    font-weight:500;
+    letter-spacing:0.28em;
+    text-transform:uppercase;
+    color:var(--onwine);
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:clamp(14px,2.2vh,26px);
+  }
+  .feature .kicker::after{content:"";flex:1;height:1px;background:rgba(250,247,240,0.34)}
+
+  .feature .item{padding:clamp(9px,1.5vh,17px) 0}
+  .feature .item + .item{border-top:1px solid rgba(250,247,240,0.2)}
+  .feature .name{
+    font-family:"Fraunces",Georgia,serif;
+    font-weight:400;
+    font-size:clamp(16px,2.4vh,27px);
+    line-height:1.2;
+    letter-spacing:-0.012em;
+  }
+  .feature .note{
+    font-size:clamp(10.5px,1.32vh,13.5px);
+    color:var(--onwine);
+    line-height:1.55;
+    margin-top:5px;
+  }
+
+  /* ---------- quiet sections ---------- */
+  .stack{display:flex;flex-direction:column;gap:clamp(18px,2.8vh,34px);justify-content:center}
+
+  .kicker{
+    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:clamp(9px,1.1vh,11px);
+    font-weight:500;
+    letter-spacing:0.26em;
+    text-transform:uppercase;
+    color:var(--bordeaux);
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:clamp(7px,1.2vh,13px);
+  }
+  .kicker::after{content:"";flex:1;height:1px;background:var(--rule)}
+
+  .item{padding:clamp(6px,1vh,11px) 0}
+  .item + .item{border-top:1px solid var(--rule)}
+
+  .name{
+    font-family:"Fraunces",Georgia,serif;
+    font-weight:400;
+    font-size:clamp(14px,1.95vh,21px);
+    line-height:1.25;
+    letter-spacing:-0.008em;
+  }
+  .note{
+    font-size:clamp(10px,1.28vh,13px);
+    color:var(--muted);
+    line-height:1.5;
+    margin-top:3px;
+  }
+
+  .lead .name{font-weight:500}
+  .lead .note{color:var(--bordeaux);opacity:0.85}
+
+  /* ---------- footer ---------- */
+  .footer{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:clamp(14px,2vw,34px);
+    flex-wrap:wrap;
+    padding-top:clamp(11px,1.8vh,20px);
+    border-top:1px solid var(--rule);
+    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:clamp(9.5px,1.25vh,12.5px);
+    font-weight:500;
+    letter-spacing:0.17em;
+    text-transform:uppercase;
+    color:var(--bordeaux);
+  }
+
+  .footer span + span::before{
+    content:"\00B7";
+    margin-right:clamp(14px,2vw,34px);
+    opacity:0.5;
+  }
+
+  @media (max-width:840px){
+    body{align-items:flex-start;padding:24px 18px 36px}
+    .columns{grid-template-columns:1fr;gap:26px}
+    .masthead{flex-direction:column;align-items:flex-start;gap:8px}
+    .standfirst{text-align:left}
+  }
+</style>
+</head>
+<body>
+
+<div class="sheet">
+
+  <header class="masthead">
+    <h1 class="wordmark">87 PoW Drop&#8211;In <em>Cafe</em></h1>
+  </header>
+
+  <div class="columns">
+
+    <!-- SIGNATURE -->
+    <section class="feature">
+      <h2 class="kicker">Signature Drinks</h2>
+
+      <div class="item">
+        <p class="name">Iced Date Latte</p>
+        <p class="note">Date syrup, espresso, cold milk, ice</p>
+      </div>
+
+      <div class="item">
+        <p class="name">Cold Brew, Peanut Butter Cold Foam</p>
+        <p class="note">Overnight cold brew under a thick peanut butter foam</p>
+      </div>
+
+      <div class="item">
+        <p class="name">Espresso Tonic</p>
+        <p class="note">Espresso, tonic, orange peel, lots of ice</p>
+      </div>
+
+      <div class="item">
+        <p class="name">Iced Cherry Matcha Latte</p>
+        <p class="note">Homemade cherry syrup, whisked matcha, cold milk</p>
+      </div>
+    </section>
+
+    <!-- EVERYTHING ELSE -->
+    <div class="stack">
+
+      <section>
+        <h2 class="kicker">Cold Drinks</h2>
+
+        <div class="item lead">
+          <p class="name">Cold Brew</p>
+        </div>
+
+        <div class="item">
+          <p class="name">Iced Latte</p>
+        </div>
+
+        <div class="item">
+          <p class="name">Iced Matcha Latte</p>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="kicker">Hot Drinks</h2>
+
+        <div class="item">
+          <p class="name">Espresso &#183; Americano</p>
+        </div>
+
+        <div class="item">
+          <p class="name">Latte &#183; Flat White &#183; Cappuccino</p>
+        </div>
+
+        <div class="item">
+          <p class="name">Matcha Latte</p>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="kicker">Pastries</h2>
+
+        <div class="item">
+          <p class="name">Salted Peanut Butter Dark Chocolate Cookies</p>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <footer class="footer">
+    <span>Oat and whole milk available</span>
+    <span>Cold foam can be made vegan</span>
+  </footer>
+
+</div>
+
+</body>
+</html>
